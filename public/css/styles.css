@@ -1,0 +1,295 @@
+body, html {
+  font-family: 'Circular Std Book';
+  background-color: lavender;
+}
+
+#body-container {
+  margin-top: 25px;
+  padding: 20px;
+}
+
+.card {
+  border: none;
+}
+
+.card-border {
+  border: 2px solid #333;
+  border-radius: 5px 5px 5px 5px/25px 25px 25px 5px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+a.card-header-link {
+  text-decoration: none;
+}
+
+a.card-header-link:hover {
+  text-decoration: underline;
+}
+
+#add-new-comment-btn {
+  margin-bottom: 1.5rem;
+}
+
+@media only screen and (min-width: 1600px) {
+  .container-max-width {
+    max-width: 80%;
+  }
+}
+
+/* TOOLTIP */
+
+.tooltip2 {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip2 .tooltiptext2 {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 120%;
+  left: 30%;
+  margin-left: -60px;
+}
+
+.tooltip2:hover {
+  cursor: not-allowed;
+}
+
+.tooltip2:hover .tooltiptext2 {
+  visibility: visible;
+}
+
+@media only screen and (max-width: 991px) {
+  .tooltip2 .tooltiptext2 {
+    top: 120%;
+    left: 50%;
+  }
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #0E0C28;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  z-index: 2;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.sidebar a.first {
+  margin-top: 6px;
+}
+
+.sidebar a:hover {
+  background-color: #555;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 1250px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a.first {
+    margin-top: 56px;
+  }
+  div.content {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+  .sidebar a.first {
+    margin-top: 56px;
+  }
+}
+
+/*FOOTER*/
+
+.footer {
+  border-top: 2px solid rgba(0, 0, 0, .5);
+  margin-top: 10px;
+  padding: auto;
+  width: 100%;
+  color: #000;
+  background-color: #ccd;
+  position: fixed;
+  z-index: auto;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+.footer .footer-links a {
+  color: #71748d;
+  margin-left: 1.5rem;
+  -webkit-transition: all .4s;
+  transition: all .4s;
+}
+
+/* DROPDOWN */
+
+.submenu-demo ul {
+  background-color: rgb(26, 2, 92);
+  border: 4px solid white;
+  padding: 3px;
+  margin: 1px;
+}
+
+/*  BREADCRUMB  */
+
+.bread {
+  background-color: seashell;
+}
+
+/*LOGIN FORM*/
+
+.form-demo {
+  background: #FFAFA1 !important;
+  height: 360px;
+  max-width: 400px;
+  border-radius: 20px;
+}
+
+.erb-image-wrapper {
+  max-width: 90%;
+  height: auto;
+  position: relative;
+  display: block;
+  margin: 0;
+}
+
+.erb-image-wrapper img {
+  max-width: 100% !important;
+  height: auto;
+  display: block;
+}
+
+.wrap {
+  margin: 0 auto;
+}
+
+.login {
+  width: 400px;
+  margin-top: 20vh !important;
+}
+
+.login input[type=email], .login input[type=password] {
+  background-color: azure;
+  opacity: 1 !important;
+  display: block !important;
+  width: 300px;
+  border-radius: 2px !important;
+  outline: 0;
+  width: 90%;
+  border: 0;
+  margin: 20px 0 0 22px !important;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.login .logoImg {
+  animation: bounce3 1s;
+  -webkit-appearance: none;
+}
+
+.login input[type=email] {
+  animation: bounce 1s;
+  -webkit-appearance: none;
+}
+
+.login input[type=password] {
+  animation: bounce1 1.3s;
+}
+
+.login input[type=submit], .login input[type=button] {
+  border: 0;
+  outline: 0;
+  padding: 12px 20px;
+  margin: 30px 25px 0 0 !important;
+  border-radius: 2px;
+  font-weight: 600;
+  animation: bounce2 1.6s;
+}
+
+.login input[type=submit] {
+  float: right;
+  background: #CF778D;
+  color: #000;
+  outline: none;
+}
+
+.login input[type=button] {
+  background: #2C3E50;
+  color: #34495e;
+}
+
+.ft {
+  animation: bounce2 2s;
+}
+
+@keyframes bounce {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce1 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce2 {
+  0% {
+    opacity: 0;
+  }
+  75% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce3 {
+  0% {
+    transform: translateY(-250px);
+    opacity: 0;
+  }
+}

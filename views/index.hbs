@@ -1,0 +1,85 @@
+{{> visitorHeader }}
+
+{{#if message}}
+<div class="container-fluid mx-auto my-5" style="width: 600px;">
+  <div class="alert alert-success">{{message}}</div>
+</div>
+{{/if}}
+
+{{#if success}}
+<div class="container-fluid mx-auto my-5" style="width: 600px;">
+  <div class="alert alert-success">{{success}}</div>
+</div>
+{{/if}}
+
+{{#if createdposts}}
+<div class="container-fluid mx-auto my-5" style="width: 600px;">
+  <div class="alert alert-success">{{createdposts}}</div>
+</div>
+{{/if}}
+
+{{#if deletedposts}}
+<div class="container-fluid mx-auto my-5" style="width: 600px;">
+  <div class="alert alert-success">{{deletedposts}}</div>
+</div>
+{{/if}}
+
+{{#if userRegistered}}
+<div class="container-fluid mx-auto my-5" style="width: 600px;">
+  <div class="alert alert-success">{{userRegistered}}</div>
+</div>
+{{/if}}
+
+{{#if userLoggedOut}}
+<div class="container-fluid mx-auto my-5" style="width: 600px;">
+  <div class="alert alert-success">{{userLoggedOut}}</div>
+</div>
+{{/if}}
+
+{{#if alreadyLoggedIn}}
+<div class="container-fluid mx-auto my-5" style="width: 600px;">
+  <div class="alert alert-danger">{{alreadyLoggedIn}}</div>
+</div>
+{{/if}}
+
+
+
+
+<div class="container-fluid container-max-width mt-5">
+  <div class="row" id="row-for-posts-cards">
+
+    {{#each postss}}
+
+    <div class="col-md-8 offset-md-2 offset-sm-1 col-sm-10 card mb-5 mt-5">
+      <div class="card-border">
+        <a href="/posts/{{this._id}}" class="card-header-link">
+          <h3 class="card-header">{{this.name}}</h3>
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">
+            <i class="far fa-user"></i> Suggested By: <a href="/users/{{this.author._id}}">{{this.author.email}}</a>
+          </h5>
+          <h6 class="card-subtitle text-muted">
+            <div class="dateDIVClass text-muted" id="dateDIV{{this._id}}" style="margin-top: .5rem;">
+              {{this.created_at}}
+            </div>
+          </h6>
+        </div>
+        <a href="/posts/{{this._id}}">
+          <img style="height: 430px; width: 100%; display: block;" src="{{this.image}}" alt="Card image">
+        </a>
+        <div class="card-body">
+          <p class="card-text">{{this.description}}</p>
+          <br><i class="far fa-heart"></i> Likes: {{this.likes.length}}
+          <br><i class="far fa-comments"></i> Comments: {{this.comments.length}}
+        </div>
+
+      </div>
+    </div>
+
+    {{/each}}
+
+  </div>
+</div>
+
+{{> footer }}

@@ -1,0 +1,79 @@
+{{> visitorHeader }}
+<div class="row mt-5">
+    <div class="col-md-9 offset-md-2" id="body-container">
+        <br><br><br>
+        <!-- ============================================================== -->
+        <!-- pageheader  -->
+        <!-- ============================================================== -->
+        <div class="page-header">
+            <h2 class="pageheader-title">Manage Subjects </h2>
+            {{!-- <div class="page-breadcrumb"> --}}
+            <hr>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item" aria-current="page"><a href="/" class="breadcrumb-link">Dashboard</a>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="/mngSubject"
+                            class="breadcrumb-link">Manage Subjects </a>
+                    </li>
+                </ol>
+            </nav>
+            {{!-- </div> --}}
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <form action="/mngSubject" method="POST" autocomplete="off">
+                    <input type="hidden" name="_id" value="{{subject._id}}">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Subject Name</label>
+                            <input type="text" class="form-control" name="subjectName" placeholder="Subject Name"
+                                value="{{subject.subjectName}}">
+                            <div class="text-danger">
+                                {{subject.subjectNameError}}</div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>&nbsp;</label>
+                            <button type="submit" class="form-control btn btn-info"><i
+                                    class="fa fa-database"></i>&nbsp;Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <br><br><br>
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                <h3>Subjects List</h3>
+                <table id="userdata"
+                    class="table responsive table-bordered "
+                    style="width:100%; background-color: mintcream;">
+                    <thead>
+                        <tr>
+                            <th>Subject Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each list}}
+                        <tr>
+                            <td>{{this.subjectName}}</td>
+                            <td>
+                                {{!-- <a href="mngSubjects/{{this._id}}"><i class="fa fa-pencil fa-lg"
+                                            aria-hidden="true"></i></a>&nbsp; --}}
+                                <a href="mngSubject/delete/{{this._id}}"
+                                    onclick="return confirm('Are you sure to delete this record ?');"><i
+                                        class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{> footer }}

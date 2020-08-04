@@ -1,0 +1,122 @@
+{{> visitorHeader }}
+<div class="row mt-5">
+    <div class="col-md-9 offset-md-2" id="body-container">
+        <br><br><br>
+        <!-- ============================================================== -->
+        <!-- pageheader  -->
+        <!-- ============================================================== -->
+
+        <div class="page-header">
+            <h2 class="pageheader-title">Manage Experts </h2>
+            {{!-- <div class="page-breadcrumb"> --}}
+            <hr>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item" aria-current="page"><a href="/" class="breadcrumb-link">Dashboard</a>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="/mngExpert"
+                            class="breadcrumb-link">Manage Experts </a>
+                    </li>
+                </ol>
+            </nav>
+            {{!-- </div> --}}
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <form action="/mngExpert" method="POST" autocomplete="off">
+                    <input type="hidden" name="_id" value="{{experts._id}}">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" name="firstName" placeholder="First Name"
+                                value="{{experts.firstName}}">
+                            <div class="text-danger">
+                                {{experts.firstNameError}}</div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Middle Name</label>
+                            <input type="text" class="form-control" name="middleName" placeholder="Middle Name"
+                                value="{{experts.middleName}}">
+                            <div class="text-danger">
+                                {{experts.middleNameError}}</div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" name="lastName" placeholder="Last Name"
+                                value="{{experts.lastName}}">
+                            <div class="text-danger">
+                                {{experts.lastNameError}}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label>Date of Birth</label>
+                            <input type="date" class="form-control" name="dob" placeholder="Date of Birth"
+                                value="{{experts.dob}}">
+                            <div class="text-danger">
+                                {{experts.dobError}}</div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Gender</label>
+                            <input class="form-control" list="gender" value="{{experts.gender}}" name="gender"
+                                placeholder="Select Gender">
+                            <datalist id="gender">
+                                <option value="Male"></option>
+                                <option value="Female"></option>
+                            </datalist>
+                            <div class="text-danger">
+                                {{experts.middleNameError}}</div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Company Name</label>
+                            <input type="text" class="form-control" name="companyName" placeholder="Company Name"
+                                value="{{experts.companyName}}">
+                            <div class="text-danger">
+                                {{experts.companyNameError}}</div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Designation</label>
+                            <input class="form-control" list="designation" value="{{experts.designation}}"
+                                name="designation" placeholder="Select Designation">
+                            <datalist id="designation">
+                                <option value="CEO"></option>
+                                <option value="HR"></option>
+                                <option value="MD"></option>
+                                <option value="Senior Developer"></option>
+                                <option value="Junior Developer"></option>
+                                <option value="Testor"></option>
+                                <option value="Data Analyst"></option>
+                            </datalist>
+                            <div class="text-danger">
+                                {{experts.designationError}}</div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Email ID</label>
+                            <input type="email" class="form-control" name="email" placeholder="Email ID"
+                                value="{{experts.email}}">
+                            <div class="text-danger">
+                                {{experts.emailError}}</div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Contact No</label>
+                            <input type="number" class="form-control" name="contactNo" placeholder="Contact No"
+                                value="{{experts.contactNo}}">
+                            <div class="text-danger">
+                                {{experts.contactNoError}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <br>
+                        <center>
+                            <button type="submit" class="btn btn-info"><i
+                                    class="fa fa-database"></i>&nbsp;Submit</button>
+                            <a class="btn btn-secondary" href="/viewExpert"><i
+                                    class="fa fa-list-alt"></i>&nbsp;View All</a>
+                        </center>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer }}

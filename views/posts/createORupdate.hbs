@@ -1,0 +1,41 @@
+{{> visitorHeader }}
+<div class="row mt-5">
+  <div class="col-md-8 offset-md-2" id="body-container">
+    <div class="container-fluid">
+      <h3>{{title}}</h3>
+      {{#if updating}}
+      <form action="/posts/update/{{posts._id}}" method="POST">
+        {{else}}
+        <form action="/posts/create" method="POST">
+          {{/if}}
+          {{!-- <input type="hidden" name="_id"> --}}
+          <fieldset>
+            <div class="form-group">
+              <label for="nameID">Name</label>
+              <input type="text" name="name" class="form-control {{#if posts.nameError}}is-invalid{{/if}}"
+                value="{{posts.name}}" id="nameID" placeholder="Enter Name">
+              <div class="text-danger">
+                {{posts.nameError}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="imageID">Image</label>
+              <input type="text" name="image" class="form-control" id="imageID" value="{{posts.image}}"
+                placeholder="Enter Image URL">
+            </div>
+            <div class="form-group">
+              <label for="descriptionID">Description</label>
+              <textarea class="form-control {{#if posts.descriptionError}}is-invalid{{/if}}" name="description"
+                id="descriptionID" rows="3"
+                placeholder="Description (min 30 characters)">{{posts.description}}</textarea>
+              <div class="text-danger">
+                {{posts.descriptionError}}
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </fieldset>
+        </form>
+    </div>
+  </div>
+</div>
+{{> footer }}

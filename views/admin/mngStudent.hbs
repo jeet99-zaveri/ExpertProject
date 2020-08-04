@@ -1,0 +1,124 @@
+{{> visitorHeader }}
+<div class="row mt-5">
+    <div class="col-md-9 offset-md-2" id="body-container">
+        <br><br><br>
+        <!-- ============================================================== -->
+        <!-- pageheader  -->
+        <!-- ============================================================== -->
+        <div class="page-header">
+            <h2 class="pageheader-title">Manage Students </h2>
+            {{!-- <div class="page-breadcrumb"> --}}
+            <hr>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item" aria-current="page"><a href="/" class="breadcrumb-link">Dashboard</a>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="/mngStudent"
+                            class="breadcrumb-link">Manage Students </a>
+                    </li>
+                </ol>
+            </nav>
+            {{!-- </div> --}}
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <form action="/mngStudent" method="POST" autocomplete="off">
+                    <input type="hidden" name="_id" value="{{student._id}}">
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label>Enrollment Number</label>
+                            <input type="text" class="form-control" name="enrollmentNo" placeholder="Enrollment Number"
+                                value="{{student.enrollmentNo}}"
+                                onkeypress="return event.charCode >=48 && event.charCode <= 57" minlength="15"
+                                maxlength="15">
+                            <div class="text-danger">
+                                {{student.enrollmentNoError}}</div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" name="firstName" placeholder="First Name"
+                                value="{{student.firstName}}"
+                                onkeypress="return (event.charCode >=65 && event.charCode <= 90) || (event.charCode >=97 && event.charCode <= 122)">
+                            <div class="text-danger">
+                                {{student.firstNameError}}</div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Middle Name</label>
+                            <input type="text" class="form-control" name="middleName" placeholder="Middle Name"
+                                value="{{student.middleName}}">
+                            <div class="text-danger">
+                                {{student.middleNameError}}</div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" name="lastName" placeholder="Last Name"
+                                value="{{student.lastName}}">
+                            <div class="text-danger">
+                                {{student.lastNameError}}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label>Date of Birth</label>
+                            <input type="date" class="form-control" name="dob" placeholder="Date of Birth"
+                                value="{{student.dob}}">
+                            <div class="text-danger">
+                                {{student.dobError}}</div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Gender</label>
+                            <input class="form-control" list="gender" value="{{student.gender}}" name="gender"
+                                placeholder="Select Gender">
+                            <datalist id="gender">
+                                <option value="Male"></option>
+                                <option value="Female"></option>
+                            </datalist>
+                            <div class="text-danger">
+                                {{student.genderError}}</div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Address</label>
+                            <textarea type="text" class="form-control" name="address"
+                                placeholder="Address...">{{student.address}}</textarea>
+                            <div class="text-danger">
+                                {{student.addressError}}</div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Mother's Name</label>
+                            <input type="text" class="form-control" name="motherName" placeholder="Mother's Name"
+                                value="{{student.motherName}}">
+                            <div class="text-danger">
+                                {{student.motherNameError}}</div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Email ID</label>
+                            <input type="email" class="form-control" name="email" placeholder="Email ID"
+                                value="{{student.email}}">
+                            <div class="text-danger">
+                                {{student.emailError}}</div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>Contact No</label>
+                            <input type="text" class="form-control" name="contactNo" placeholder="Contact No"
+                                value="{{student.contactNo}}"
+                                onkeypress="return event.charCode >=48 && event.charCode <= 57" minlength="10"
+                                maxlength="10">
+                            <div class="text-danger">
+                                {{student.contactNoError}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <br>
+                        <center>
+                            <button type="submit" class="btn btn-info"><i
+                                    class="fa fa-database"></i>&nbsp;Submit</button>
+                            <a class="btn btn-secondary" href="/viewStudent"><i class="fa fa-list-alt"></i>&nbsp;View
+                                All</a>
+                        </center>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer }}

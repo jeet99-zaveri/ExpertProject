@@ -1,0 +1,76 @@
+{{> visitorHeader }}
+
+<div class="row mt-5">
+    <div class="col-md-9 offset-md-2" id="body-container">
+        <br><br><br>
+        <!-- ============================================================== -->
+        <!-- pageheader  -->
+        <!-- ============================================================== -->
+        <div class="page-header">
+            <h2 class="pageheader-title">Manage Experts </h2>
+            {{!-- <div class="page-breadcrumb"> --}}
+            <hr>
+            <nav class="bread" aria-label="breadcrumb">
+                <ol class="breadcrumb bread">
+                    <li class="breadcrumb-item" aria-current="page"><a href="/" class="breadcrumb-link">Dashboard</a>
+                    <li class="breadcrumb-item" aria-current="page"><a href="/mngExpert" class="breadcrumb-link">Manage
+                            Experts </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="/viewExpert"
+                            class="breadcrumb-link">View
+                            Experts</a></li>
+                </ol>
+            </nav>
+            {{!-- </div> --}}
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <h3><a class="btn btn-secondary" href="/mngExpert"><i class="fa fa-plus"></i>&nbsp; Create
+                        New</a> &nbsp;Expert
+                    List</h3>
+                <table id="userdata"
+                    class="table table-responsive responsive table-striped table-bordered table-hover table-condensed"
+                    style="width:100%; background-color: mintcream;">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Date of Birth</th>
+                            <th>Gender</th>
+                            <th>Company Name</th>
+                            <th>Designation</th>
+                            <th>Email ID</th>
+                            <th>Contact No</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each list}}
+                        <tr>
+                            <td>{{this.firstName}}</td>
+                            <td>{{this.middleName}}</td>
+                            <td>{{this.lastName}}</td>
+                            <td>{{this.dob}}</td>
+                            <td>{{this.gender}}</td>
+                            <td>{{this.companyName}}</td>
+                            <td>{{this.designation}}</td>
+                            <td>{{this.email}}</td>
+                            <td>{{this.contactNo}}</td>
+                            <td>
+                                <a href="mngExpert/{{this._id}}"><i class="fa fa-pencil fa-lg"
+                                        aria-hidden="true"></i></a>&nbsp;
+                                <a href="mngExpert/delete/{{this._id}}"
+                                    onclick="return confirm('Are you sure to delete this record ?');"><i
+                                        class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer }}

@@ -1,0 +1,80 @@
+{{> visitorHeader }}
+<div class="row mt-5">
+    <div class="col-md-9 offset-md-2" id="body-container">
+        <br><br><br>
+        <!-- ============================================================== -->
+        <!-- pageheader  -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Manage Students </h2>
+                    {{!-- <div class="page-breadcrumb"> --}}
+                    <hr>
+                    <nav class="bread" aria-label="breadcrumb">
+                        <ol class="breadcrumb bread">
+                            <li class="breadcrumb-item" aria-current="page"><a href="/"
+                                    class="breadcrumb-link">Dashboard</a>
+                            <li class="breadcrumb-item" aria-current="page"><a href="/mngStudents"
+                                    class="breadcrumb-link">Manage
+                                    Students </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="/viewStudent"
+                                    class="breadcrumb-link">View
+                                    Students</a></li>
+                        </ol>
+                    </nav>
+                    {{!-- </div> --}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <h3><a class="btn btn-secondary" href="/mngStudent"><i class="fa fa-plus"></i>&nbsp; Create
+                        New</a> &nbsp;Student
+                    List</h3>
+                <table id="userdata"
+                    class="table table-responsive responsive table-striped table-bordered table-hover table-condensed"
+                    style="width:100%; background-color: mintcream;">
+                    <thead>
+                        <tr>
+                            <th>Enrollment No</th>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Date of Birth</th>
+                            <th>Gender</th>
+                            <th>Address</th>
+                            <th>Mother's Name</th>
+                            <th>Email ID</th>
+                            <th>Contact No</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each list}}
+                        <tr>
+                            <td>{{this.enrollmentNo}}</td>
+                            <td>{{this.firstName}}</td>
+                            <td>{{this.middleName}}</td>
+                            <td>{{this.lastName}}</td>
+                            <td>{{this.dob}}</td>
+                            <td>{{this.gender}}</td>
+                            <td>{{this.address}}</td>
+                            <td>{{this.motherName}}</td>
+                            <td>{{this.email}}</td>
+                            <td>{{this.contactNo}}</td>
+                            <td>
+                                <a href="mngStudent/{{this._id}}"><i class="fa fa-pencil fa-lg"
+                                        aria-hidden="true"></i></a>&nbsp;
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{> footer }}

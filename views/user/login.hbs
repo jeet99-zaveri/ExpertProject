@@ -1,0 +1,42 @@
+{{> visitorHeader }}
+
+
+<div class="row mt-5">
+  <div class="col-md-8 offset-md-2" id="body-container">
+
+    {{#if message}}
+    <div class="alert alert-danger">{{message}}</div>
+    {{/if}}
+
+    {{#if notLoggedIn}}
+    <div class="alert alert-danger">{{notLoggedIn}}</div>
+    {{/if}}
+
+    <form action="/login" method="POST" class="login-page float needs-validation">
+      {{!-- <input type="hidden" name="_id"> --}}
+      <fieldset>
+        <div class="form-group">
+          <div class="login wrap form-demo">
+            <img src="/public/BMIIT Logo with Name.png" class="img-fluid logoImg mx-auto d-block responsive"
+              alt="Responsive image">
+
+            <input type="email" name="username" class="form-control {{#if user.usernameError}}is-invalid{{/if}}"
+              value="{{user.username}}" id="usernameID" placeholder="Email ID">
+            <div class="text-danger">
+              {{user.usernameError}}
+              {{user.usernameTaken}}
+            </div>
+            <input type="password" name="password" class="form-control {{#if user.passwordError}}is-invalid{{/if}}"
+              id="passwordID" placeholder="Password">
+            <div class="text-danger">
+              {{user.passwordError}}
+            </div>
+            <input type="submit" class="btn btn-outline-primary" value="Submit"></input>
+          </div>
+
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+{{> footer }}

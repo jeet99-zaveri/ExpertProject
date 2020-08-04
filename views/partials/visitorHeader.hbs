@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color:mintcream;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Explicatus Experts</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/"><i class="fas fa-home ml-2"></i> Home</a>
+                </li>
+                {{!-- {{#if userLel}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/posts/create">Suggest New posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/{{userLel._id}}">{{userLel.username}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                {{/if}} --}}
+                {{#if loggedInUser}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/posts/create"><i class="far fa-clipboard ml-2"></i> Make a Post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/{{loggedInUser._id}}"><i class="fas fa-user ml-2"></i>
+                        {{loggedInUser.email}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout"><i class="fas fa-power-off ml-2"></i> Logout</a>
+                </li>
+                {{else}}
+                {{#unless userLel}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt ml-2"></i> Login</a>
+                </li>
+                {{!-- <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li> --}}
+                {{/unless}}
+                {{/if}}
+            </ul>
+            {{!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                <button type="button" class="btn btn-secondary tooltip2"><span class="tooltiptext2">Search Currently
+                        Disabled</span>Search</button>
+            </form> --}}
+        </div>
+    </div>
+</nav>
+{{#if admin }}
+<form action="#" method="POST">
+    <div class="sidebar">
+        <ul class="nav flex-column nav-tab">
+            <li class="nav-item">
+                <a class="nav-link first active" href="/"><i class="fas fa-home"></i>&nbsp;&nbsp;Dashboard |
+                    Home </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2"
+                    aria-controls="submenu-2"><i class="fas fa-users"></i></i>&nbsp;&nbsp;Users<span
+                        class="dropdown-toggle" style="float: right;"></span></a>
+                <div id="submenu-2" class="collapse submenu submenu-demo" style="">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/mngFaculty">Faculties </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/mngExpert">Experts </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/mngStudent">Students </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/mngSubject"><i class="far fa-window-maximize"></i>&nbsp;&nbsp;Subject</a>
+            </li>
+        </ul>
+    </div>
+</form>
+{{/if}}

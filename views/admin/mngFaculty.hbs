@@ -1,0 +1,132 @@
+{{> visitorHeader }}
+<div class="row mt-5">
+    <div class="col-md-9 offset-md-2" id="body-container">
+        <br><br><br>
+        <!-- ============================================================== -->
+        <!-- pageheader  -->
+        <!-- ============================================================== -->
+        <div class="page-header">
+            <h2 class="pageheader-title">Manage Faculties </h2>
+            {{!-- <div class="page-breadcrumb"> --}}
+            <hr>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item" aria-current="page"><a href="/" class="breadcrumb-link">Dashboard</a>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="/mngFaculty"
+                            class="breadcrumb-link">Manage Faculties </a>
+                    </li>
+                </ol>
+            </nav>
+            {{!-- </div> --}}
+        </div>
+        <form action="/mngFaculty" method="POST" autocomplete="off">
+            <input type="hidden" name="_id" value="{{faculty._id}}">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" name="firstName" placeholder="First Name"
+                        value="{{faculty.firstName}}">
+                    <div class="text-danger">
+                        {{faculty.firstNameError}}</div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Middle Name</label>
+                    <input type="text" class="form-control" name="middleName" placeholder="Middle Name"
+                        value="{{faculty.middleName}}">
+                    <div class="text-danger">
+                        {{faculty.middleNameError}}</div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" name="lastName" placeholder="Last Name"
+                        value="{{faculty.lastName}}">
+                    <div class="text-danger">
+                        {{faculty.lastNameError}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label>Date of Birth</label>
+                    <input type="date" class="form-control" name="dob" placeholder="Date of Birth"
+                        value="{{faculty.dob}}">
+                    <div class="text-danger">
+                        {{faculty.dobError}}</div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Gender</label>
+                    <input class="form-control" list="gender" value="{{faculty.gender}}" name="gender"
+                        placeholder="Select Gender">
+                    <datalist id="gender">
+                        <option value="Male"></option>
+                        <option value="Female"></option>
+                    </datalist>
+                    <div class="text-danger">
+                        {{faculty.genderError}}</div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Address</label>
+                    <textarea type="text" class="form-control" name="address"
+                        placeholder="Address...">{{faculty.address}}</textarea>
+                    <div class="text-danger">
+                        {{faculty.addressError}}</div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Designation</label>
+                    <input class="form-control" list="designation" value="{{faculty.designation}}" name="designation"
+                        placeholder="Select Designation">
+                    <datalist id="designation">
+                        <option value="Director"></option>
+                        <option value="Head of Department"></option>
+                        <option value="Professor"></option>
+                        <option value="Assistant Professor"></option>
+                        <option value="Lab Assistant"></option>
+                    </datalist>
+                    <div class="text-danger">
+                        {{faculty.designationError}}</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label>Salary</label>
+                    <input type="number" class="form-control" name="salary" placeholder="Salary"
+                        value="{{faculty.salary}}" min="1" max="99999999">
+                    <div class="text-danger">
+                        {{faculty.salaryError}}</div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Joining Date</label>
+                    <input type="date" class="form-control" name="joiningDate" placeholder="Joining Date"
+                        value="{{faculty.joiningDate}}">
+                    <div class="text-danger">
+                        {{faculty.joiningDateError}}</div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Email ID</label>
+                    <input type="email" class="form-control" name="email" placeholder="Email ID"
+                        value="{{faculty.email}}">
+                    <div class="text-danger">
+                        {{faculty.emailError}}</div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Contact No</label>
+                    <input type="text" class="form-control" name="contactNo" placeholder="Contact No"
+                        value="{{faculty.contactNo}}" onkeypress="return event.charCode >=48 && event.charCode <= 57"
+                        minlength="10" maxlength="10">
+                    <div class="text-danger">
+                        {{faculty.contactNoError}}</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <br>
+                <center>
+                    <button type="submit" class="btn btn-info"><i class="fa fa-database"></i>&nbsp;Submit</button>
+                    <a class="btn btn-secondary" href="/viewFaculty"><i class="fa fa-list-alt"></i>&nbsp;View
+                        All</a>
+                </center>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{{> footer }}
