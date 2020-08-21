@@ -12,13 +12,10 @@ const passport = require('passport');
 const config = require('./config/database');
 const favicon = require('serve-favicon');
 
-
 /* ********** INITIALIZE EXPRESS APP ********** */
-
 const app = express();
 
 /* ********** IMPORT ROUTES ********** */
-
 const postsRoutes = require('./routes/posts.route');
 const userRoutes = require('./routes/user.route');
 const commentRoutes = require('./routes/comment.route');
@@ -26,7 +23,6 @@ const likeRoutes = require('./routes/like.route');
 
 
 /* ********** MONGOOSE ********** */
-
 let dev_db_url = config.database;
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, {
@@ -37,8 +33,8 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, '\n\n *** MongoDB connection error:'));
 
-/* ********** APP USE ********** */
 
+/* ********** APP USE ********** */
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -47,7 +43,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({
-  secret: 'yourMOM',
+  secret: 'Demo',
   resave: true,
   saveUninitialized: true
 
@@ -59,8 +55,8 @@ app.use('*/images', express.static(path.join(__dirname, 'public/images')));
 app.use('*/js', express.static(path.join(__dirname, 'public/js')));
 app.use('*/css', express.static(path.join(__dirname, 'public/css')));
 
-/* ********** APP SET ********** */
 
+/* ********** APP SET ********** */
 app.set('views', path.join(__dirname, '/views/'));
 app.engine('.hbs', expressHandlebars({
   extname: '.hbs',
@@ -76,7 +72,6 @@ app.set('view engine', '.hbs');
 // app.set('views', path.join(__dirname, 'views'));
 
 /* ********** PASSPORT ********** */
-
 require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
@@ -98,9 +93,6 @@ app.get('*', (req, res, next) => {
       res.locals.student = 1;
     }
   }
-  // if(req.user == "admin"){
-  //   res.locals.admin = "admin";
-  // }
   next();
 });
 
@@ -116,11 +108,7 @@ app.use('/', commentRoutes);
 app.use('/', likeRoutes);
 
 /* ********** SERVER START ********** */
-
 let portNumber = process.env.PORT || 3000;
-
 app.listen(portNumber, () => {
   console.log("*** Server is running on port: " + portNumber);
 });
-
-

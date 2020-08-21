@@ -2,12 +2,8 @@
 <div class="row mt-5">
     <div class="col-md-9 offset-md-2" id="body-container">
         <br><br><br>
-        <!-- ============================================================== -->
-        <!-- pageheader  -->
-        <!-- ============================================================== -->
         <div class="page-header">
             <h2 class="pageheader-title">Manage Subjects </h2>
-            {{!-- <div class="page-breadcrumb"> --}}
             <hr>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -17,7 +13,6 @@
                     </li>
                 </ol>
             </nav>
-            {{!-- </div> --}}
         </div>
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -46,8 +41,7 @@
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
                 <h3>Subjects List</h3>
-                <table id="userdata"
-                    class="table responsive table-bordered "
+                <table id="userdata" class="table responsive table-bordered "
                     style="width:100%; background-color: mintcream;">
                     <thead>
                         <tr>
@@ -60,12 +54,9 @@
                         <tr>
                             <td>{{this.subjectName}}</td>
                             <td>
-                                {{!-- <a href="mngSubjects/{{this._id}}"><i class="fa fa-pencil fa-lg"
-                                            aria-hidden="true"></i></a>&nbsp; --}}
                                 <a href="mngSubject/delete/{{this._id}}"
                                     onclick="return confirm('Are you sure to delete this record ?');"><i
                                         class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
-
                             </td>
                         </tr>
                         {{/each}}

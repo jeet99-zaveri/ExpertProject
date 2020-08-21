@@ -11,17 +11,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/"><i class="fas fa-home ml-2"></i> Home</a>
                 </li>
-                {{!-- {{#if userLel}}
-                <li class="nav-item">
-                    <a class="nav-link" href="/posts/create">Suggest New posts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/users/{{userLel._id}}">{{userLel.username}}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
-                </li>
-                {{/if}} --}}
                 {{#if loggedInUser}}
                 <li class="nav-item">
                     <a class="nav-link" href="/posts/create"><i class="far fa-clipboard ml-2"></i> Make a Post</a>
@@ -38,18 +27,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt ml-2"></i> Login</a>
                 </li>
-                {{!-- <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
-                </li> --}}
                 {{/unless}}
                 {{/if}}
             </ul>
-            {{!-- <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                <button type="button" class="btn btn-secondary tooltip2"><span class="tooltiptext2">Search Currently
-                        Disabled</span>Search</button>
-            </form> --}}
         </div>
     </div>
 </nav>

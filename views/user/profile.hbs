@@ -1,38 +1,43 @@
+{{> visitorHeader }}
 
-  
-  <div class="row">
-    <div class="col-md-8 offset-md-2" id="body-container">
-
-      User Profile For: {{user.username}} <hr>
+<div class="container-fluid container-max-width mt-5">
+  <div class="row" id="row-for-posts-cards">
+    <div class="col-md-8 offset-md-2 offset-sm-1 col-sm-10 card mb-5 mt-5">
+      User Profile For: {{user.username}}
+      <hr>
 
       {{#if user.postss}}
 
-        postss That "{{user.username}}" Suggested: <br>
+      postss That "{{user.username}}" Suggested: <br>
 
-        {{#each user.postss}}
-          <a href="/posts/{{this._id}}" style="text-decoration: none;">&nbsp; &nbsp; &bull; &nbsp;{{this.name}}</a><br>
-        {{/each}}
-      
+      {{#each user.postss}}
+      <a href="/posts/{{this._id}}" style="text-decoration: none;">&nbsp; &nbsp; &bull; &nbsp;{{this.name}}</a><br>
+      {{/each}}
+
       {{/if}}
 
       {{#if user.comments}}
 
-        <br>Comments By "{{user.username}}": <br>
+      <br>Comments By "{{user.username}}": <br>
 
-        {{#each user.comments}}
-          <a href="/posts/{{this.posts}}/comment/{{this._id}}" style="text-decoration: none;">&nbsp; &nbsp; &bull; &nbsp;{{this.body}}</a><br>
-        {{/each}}
-      
+      {{#each user.comments}}
+      <a href="/posts/{{this.posts}}/comment/{{this._id}}" style="text-decoration: none;">&nbsp; &nbsp; &bull;
+        &nbsp;{{this.body}}</a><br>
+      {{/each}}
+
       {{/if}}
 
       {{#if user.likes}}
 
-        <br>postss That "{{user.username}}" Liked: <br>
+      <br>postss That "{{user.username}}" Liked: <br>
 
-        {{#each user.likes}}
-          <a href="/posts/{{this.posts._id}}" style="text-decoration: none;">&nbsp; &nbsp; &bull; &nbsp;{{this.posts.name}}</a><br>
-        {{/each}}
-      
+      {{#each user.likes}}
+      <a href="/posts/{{this.posts._id}}" style="text-decoration: none;">&nbsp; &nbsp; &bull;
+        &nbsp;{{this.posts.name}}</a><br>
+      {{/each}}
+
       {{/if}}
-    </div> 
+    </div>
   </div>
+</div>
+{{> footer }}

@@ -36,8 +36,6 @@
 
           <h3 class="card-header">{{posts.name}}</h3>
           <div class="card-body">
-            {{!-- <h5 class="card-title">Special title treatment</h5> --}}
-            {{!-- <h6 class="card-subtitle text-muted">Support card subtitle</h6> --}}
           </div>
           <img style="height: 500px; width: 100%; display: block;" src="{{posts.image}}" alt="Card image">
           <div class="card-body">
@@ -55,8 +53,6 @@
                 class="far fa-trash-alt"></i> Delete</button>
             {{/if}}
             {{/if}}
-
-            {{!-- Ako Nije Ulogovan Izbaci Mu Modal --}}
 
             {{#unless loggedInUser}}
             <button data-toggle="modal" data-target="#likeModal" class="card-link btn btn-outline-danger"
@@ -155,7 +151,6 @@
                   data-toggle="modal"><i class="far fa-trash-alt"></i> Delete</a>
                 {{/ifEqualsString}}
                 {{/if}}
-                {{!-- <a class="float-right btn text-white btn-danger btn-sm mr-2"><i class="fa fa-heart"></i> Like</a> --}}
               </p>
             </div>
           </div>
@@ -224,13 +219,11 @@
       <div class="collapse" id="collapseComment">
         <div class="well">
           {{#unless loggedInUser}}
-          <!--If the user is not logged in, direct him to the login page-->
           <h5 style="text-align: center;">You need to login before you can comment. <a href="/login">Click here</a> to
             go to
             the login page.</h5>
           {{/unless}}
           {{#if loggedInUser}}
-          <!--If the user is logged in, show the new comment form-->
           <h4>Write your comment <i class="fas fa-pencil-alt"></i></h4>
           <form action="/comments/create" id="add-new-comment-form" onsubmit="return validateNewCommentForm();"
             method="POST">
@@ -251,7 +244,6 @@
           {{/if}}
         </div>
       </div>
-      <!--Collapse Add a comment form END-->
     </div>
     <br><br><br>
   </div>
