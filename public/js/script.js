@@ -13,7 +13,7 @@ function validateNewCommentForm(event){
   }
 
   if(error != ""){
-    errorDiv.innerHTML = "<i class='fa fa-times-circle'></i> " + error;
+    errorDiv.innerHTML = "<i class='fas fa-times-circle'></i> " + error;
     errorDiv.classList.add("text-danger");
     commentTextarea.classList.add("is-invalid");
     
@@ -39,7 +39,7 @@ function validateEditCommentForm(form){
 
   if(error != "")
   {
-    errorDiv.innerHTML = "<i class='fa fa-times-circle'></i> " + error;
+    errorDiv.innerHTML = "<i class='fas fa-times-circle'></i> " + error;
     errorDiv.classList.add("text-danger");
     commentTextarea.classList.add("is-invalid");
     return false;

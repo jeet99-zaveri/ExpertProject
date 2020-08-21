@@ -1,11 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
-// Require The Controllers
-
 const postsController = require('../controllers/posts.controller');
-
-// Routes
 
 router.get('/', postsController.getAll);
 router.get('/posts/create', ensureAuthenticated, postsController.createView);
@@ -16,8 +11,6 @@ router.get('/posts/update/:id', ensureAuthenticated, postsController.updateView)
 router.post('/posts/update/:id', ensureAuthenticated, postsController.update);
 router.post('/posts/delete/:id', ensureAuthenticated, postsController.delete);
 
-// Access Control
-
 function ensureAuthenticated(req, res, next){
   if(req.isAuthenticated()){
     return next();
@@ -26,7 +19,5 @@ function ensureAuthenticated(req, res, next){
     res.redirect('/login');
   }
 }
-
-// Export Router
 
 module.exports = router;

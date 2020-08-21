@@ -1,16 +1,9 @@
 const express = require('express');
 const router = express.Router();
-
-// Require The Controllers
-
 const likeController = require('../controllers/like.controller');
-
-// Routes
 
 router.post('/posts/:id/likes/create', ensureAuthenticated, likeController.create);
 router.post('/posts/:id/likes/delete/:likeid', ensureAuthenticated, likeController.delete);
-
-// Access Control
 
 function ensureAuthenticated(req, res, next){
   if(req.isAuthenticated()){
@@ -20,7 +13,5 @@ function ensureAuthenticated(req, res, next){
     res.redirect('/login');
   }
 }
-
-// Export Router
 
 module.exports = router;
