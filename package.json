@@ -1,14 +1,14 @@
 {
-  "name": "dfd",
+  "name": "Expert Project",
   "version": "1.0.0",
-  "description": "DFD posts App | EPOS",
+  "description": "It's Question Answering Portal",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon app.js",
     "start": "node app.js"
   },
-  "author": "DFD",
+  "author": "Jeet Zaveri",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -1,13 +1,7 @@
-/* ********** MODELS ********** */
-
 const postsModel = require('../models/posts.model');
 const UserModel = require('../models/user.model');
 const CommentModel = require('../models/comment.model');
 const LikeModel = require('../models/like.model');
-
-/* ********** OPERATIONS ********** */
-
-/* ********** GET ALL ********** */
 
 var sorts = { created_at: -1 };
 exports.getAll = function (req, res) {
@@ -41,8 +35,8 @@ exports.getAll = function (req, res) {
   }).sort(sorts).populate('author');
 };
 
-/* ********** CREATE ********** */
 
+/* ********** CREATE ********** */
 exports.createView = (req, res) => {
   res.render('posts/createORupdate', {
     title: 'Suggest New posts',
@@ -51,9 +45,7 @@ exports.createView = (req, res) => {
 };
 
 exports.create = (req, res, next) => {
-
   // Create posts Object
-
   let posts = new postsModel({
     name: req.body.name,
     description: req.body.description,
@@ -62,12 +54,9 @@ exports.create = (req, res, next) => {
   });
 
   // Save posts
-
   posts.save((error) => {
     if (!error) {
-
       // Push posts User postss Array | Relationships
-
       UserModel.findById(posts.author, (error, user) => {
         if (error)
           return next(error);
@@ -78,7 +67,9 @@ exports.create = (req, res, next) => {
 
       req.flash('createdposts', 'posts "' + req.body.name + '" Successfully Suggested.')
       res.redirect('/');
-    } else {
+    } 
+    else 
+    {
       if (error.name == 'ValidationError') {
         handleValidationErrors(error, req.body);
         res.render("posts/createORupdate", {
@@ -94,49 +85,24 @@ exports.create = (req, res, next) => {
 };
 
 /* ********** READ ********** */
-
 exports.read = (req, res, next) => {
-
-  // console.log("\n\n\n\n\n******************************")
-  // console.log("USAO U READ")
-  // console.log("******************************")
-
   let correctUser = false;
   let alreadyLiked = false;
   let likeID;
 
   // Find posts 
-
   postsModel.findById(req.params.id, (error, posts) => {
-
-    // console.log("******************************")
-    // console.log("posts FIND")
-    // console.log(posts);
-    // console.log("******************************")
-
     if (!posts)
-      return next(); // Failed To Cast Ako Nema Slike
+      return next();
 
-    if (error) {
+    if (error) 
       return next(error);
-    }
 
     // Find User For That posts 
-
-    UserModel.findById(posts.author, (error, user) => {
-
-      // console.log("******************************")
-      // console.log("USER FIND")
-      // console.log(user);
-      // console.log("******************************")
-
+    UserModel.findById(posts.author, (error, user) => 
+    {
       if (error)
         return next(error);
-
-      // console.log("REQ: " + req.user);
-      // console.log("U: " + user);
-
-      // Check If User Is Author So He Can Edit And Delete posts
 
       if (req.user && user) {
         if (req.user.usertype == "admin") {
@@ -152,17 +118,14 @@ exports.read = (req, res, next) => {
       }
 
       // Check To See If User Already Liked The posts 
-
       if (req.user) {
         posts.likes.forEach((like) => {
-
           req.user.likes.forEach((userLike) => {
             if (String(like) == String(userLike)) {
               alreadyLiked = true;
               likeID = like;
             }
           });
-
         });
       }
 
@@ -170,7 +133,8 @@ exports.read = (req, res, next) => {
       let date = posts.created_at;
       date = date.toLocaleDateString("en-US", options);
 
-      res.render('posts/read', {
+      res.render('posts/read', 
+      {
         layout: 'main',
         posts: posts,
         date: date,
@@ -187,7 +151,6 @@ exports.read = (req, res, next) => {
         likeID: likeID,
       });
     });
-
   }).populate({
     path: 'comments',
     populate: {
@@ -202,7 +165,6 @@ exports.read = (req, res, next) => {
 };
 
 // SAME AS ABOVE, ONLY ONE DIFFERENCE, OPTIMIZE THIS !!!!!!!!!!!! TODO 
-
 exports.readComment = (req, res, next) => {
   let correctUser = false;
   let alreadyLiked = false;
@@ -210,24 +172,18 @@ exports.readComment = (req, res, next) => {
   let commentID = req.params.commentID;
 
   postsModel.findById(req.params.id, (error, posts) => {
-
-    if (error) {
+    if (error) 
       return next(error);
-    }
 
     UserModel.findById(posts.author, (error, user) => {
       if (error)
         return next(error);
-
-
-      // console.log("REQ: " + req.user);
-      // console.log("U: " + user);
-
       if (req.user && user && String(req.user._id) == String(user._id)) {
         correctUser = true
       }
 
-      if (req.user) {
+      if (req.user) 
+      {
         posts.likes.forEach((like) => {
 
           req.user.likes.forEach((userLike) => {
@@ -262,7 +218,6 @@ exports.readComment = (req, res, next) => {
         commentID: commentID,
       });
     });
-
   }).populate({
     path: 'comments',
     populate: {
@@ -277,22 +232,14 @@ exports.readComment = (req, res, next) => {
 };
 
 /* ********** UPDATE ********** */
-
 exports.updateView = (req, res, next) => {
   postsModel.findById(req.params.id, (error, posts) => {
     if (error) {
       return next(error);
     }
 
-    // console.log("\n\n\nposts: " + posts.author + ".");
-    // console.log("AUTHOR: " + req.user._id + ".\n\n\n\n");
-
     let omg1 = String(posts.author);
     let omg2 = String(req.user._id);
-
-    if (omg1 == omg2) {
-      // console.log("DSADSADAS");
-    }
 
     if (omg1 != omg2) {
       req.flash('notAuthorized', 'Not Authorized.');
@@ -320,35 +267,7 @@ exports.update = (req, res, next) => {
   });
 };
 
-// exports.update = (req, res) => {
-//   postsModel.findOneAndUpdate({
-//     _id: req.body._id,
-//   }, req.body, {
-//       new: true,
-//       runValidators: true
-//   }, (error, posts) => {
-
-//     console.log(posts);
-//     if(!error){
-//       req.flash('updatedposts', 'posts "' + req.body.name + '" Successfully Updated.')
-//       res.redirect('/posts/' + req.params.id);
-//     }else{
-//       if(error.name == "ValidationError"){
-//         handleValidationErrors(error, req.body);
-//         res.render("posts/createORupdate", {
-//           title: 'Update posts "' + req.body.name + '".',
-//           posts: posts,
-//           updating: true
-//         });
-//       }else{
-//         console.log("Error: " + error);
-//       }
-//     }
-//   });
-// };
-
 /* ********** DELETE ********** */
-
 exports.delete = (req, res, next) => {
   postsModel.findByIdAndRemove(req.params.id, (error, posts) => {
     if (error) {
@@ -358,34 +277,20 @@ exports.delete = (req, res, next) => {
     LikeModel.find((error, likes) => {
       likes.forEach((like) => {
         if (String(like.posts) == String(req.params.id)) {
-
-          // Pre Brisanja Likea Moramo Iz User Likes Arraya Da Izbrisemo Like
-
           UserModel.findById(like.author, (error, user) => {
             if (error)
               return next(error);
-
             user.likes.pull({ _id: like._id });
             user.save();
           });
-
           like.remove();
         }
       })
     });
 
-
-    // Moram Izbrisati Iz User postss Ovaj posts I Sve Komentare Vezane Za Taj Film Kao i Kad Brisem Komentare Onda I Iz Usera Moram Komentare || Ovo mora da moze lakse
-
     UserModel.findById(posts.author, (error, user) => {
       if (error)
         return next(error);
-
-      // const index = user.postss.indexOf(req.params.id);
-      // if (index > -1) {
-      //   user.postss.splice(index, 1);
-      // }
-
       user.postss.pull({ _id: req.params.id });
       user.save();
     });
@@ -393,23 +298,12 @@ exports.delete = (req, res, next) => {
     CommentModel.find((error, comments) => {
       comments.forEach((comment) => {
         if (String(comment.posts) == String(req.params.id)) {
-
-          // Pre Brisanja Komentara Moramo Iz User Comments Arraya Da Izbrisemo Comment
-
           UserModel.findById(comment.author, (error, user) => {
             if (error)
               return next(error);
-
-            // const index = user.comments.indexOf(comment._id);
-            // if (index > -1) {
-            //   user.comments.splice(index, 1);
-            // }
-
-
             user.comments.pull({ _id: comment._id });
             user.save();
           });
-
           comment.remove();
         }
       });
@@ -421,7 +315,6 @@ exports.delete = (req, res, next) => {
 };
 
 /* ********** METHODS ********** */
-
 function handleValidationErrors(error, body) {
   for (field in error.errors) {
     switch (error.errors[field].path) {

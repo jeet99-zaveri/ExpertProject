@@ -1,5 +1,3 @@
-/* ********** MODELS ********** */
-
 const UserModel = require('../models/user.model');
 const FacultyModel = require('../models/faculty.model');
 const ExpertModel = require('../models/expert.model');
@@ -8,11 +6,8 @@ const SubjectModel = require('../models/subject.model');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
-/* ********** OPERATIONS ********** */
-
 
 /* ********** LOGIN ********** */
-
 exports.loginView = (req, res) => {
   res.render('user/login', {
     title: 'Login Here',
@@ -35,30 +30,25 @@ exports.login = (req, res, next) => {
 };
 
 /* ********** LOGOUT ********** */
-
 exports.logout = (req, res, next) => {
   if (!req.isAuthenticated()) {
     req.flash('notLoggedIn', "Please Login.");
     res.redirect('/login');
-
     return (next);
   }
-
   req.flash('userLoggedOut', 'See Ya Later "' + req.user.email + '".');
   req.logout();
   res.redirect('/');
 };
 
-/* ********** PROFILE ********** */
 
+/* ********** PROFILE ********** */
 exports.profileView = (req, res, next) => {
   UserModel.findById(req.params.id, (error, user) => {
     if (error) {
       return next(error);
     }
-
     res.render('user/profile', {
-      // title: 'Update posts "' + posts.name + '".',
       layout: 'main',
       user: user,
     });
@@ -73,7 +63,6 @@ exports.profileView = (req, res, next) => {
 
 
 /*********** MANAGE FACULTY *********/
-
 exports.mngFacultyView = (req, res) => {
   res.render('admin/mngFaculty', {
     title: 'Manage Faculty here...',
@@ -169,9 +158,6 @@ exports.mngFaculty = (req, res, next) => {
       }
     });
   }
-
-
-
 };
 
 exports.viewFaculty = (req, res, next) => {
@@ -234,8 +220,6 @@ exports.mngExpert = (req, res, next) => {
     var temp = 0;
     experts.save((err) => {
       if (!err) {
-        // res.redirect('viewFaculty');
-
         console.log("Error to nthi aavti...");
         var users = new UserModel();
         users.email = req.body.email;
@@ -244,17 +228,13 @@ exports.mngExpert = (req, res, next) => {
         users.expertID = experts._id;
 
         console.log(users.email);
-        // for access data on view side we have to use find().populate('Schema').exec((err, result)=>{})
         bcrypt.genSalt(10, (error, salt) => {
           bcrypt.hash(users.password, salt, (error, hash) => {
             if (error) {
               console.log("Error: " + error);
-
               return next(error);
             }
-
             users.password = hash;
-
             users.save((err1) => {
               console.log(users.expertID);
               if (!err1) {
@@ -265,7 +245,6 @@ exports.mngExpert = (req, res, next) => {
                 req.flash('error', err1);
               }
             });
-
           });
         });
       }
@@ -281,7 +260,6 @@ exports.mngExpert = (req, res, next) => {
           console.log('Error during record insertion : ' + err);
       }
     });
-    // req.flash('success', 'Welcome Back "' + req.body.username + '".');
   }
   else {
     ExpertModel.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
@@ -340,7 +318,6 @@ exports.updateExpert = (req, res, next) => {
 
 
 /*********** MANAGE STUDENT ************/
-
 exports.mngStudentView = (req, res) => {
   res.render('admin/mngStudent', {
     title: 'Manage Student here...',
@@ -368,8 +345,6 @@ exports.mngStudent = (req, res, next) => {
     var temp = 0;
     student.save((err) => {
       if (!err) {
-        // res.redirect('viewFaculty');
-
         console.log("Error to nthi aavti...");
         var users = new UserModel();
         users.email = req.body.email;
@@ -378,7 +353,6 @@ exports.mngStudent = (req, res, next) => {
         users.studentID = student._id;
 
         console.log(users.email);
-        // for access data on view side we have to use find().populate('Schema').exec((err, result)=>{})
         bcrypt.genSalt(10, (error, salt) => {
           bcrypt.hash(users.password, salt, (error, hash) => {
             if (error) {
@@ -386,9 +360,7 @@ exports.mngStudent = (req, res, next) => {
 
               return next(error);
             }
-
             users.password = hash;
-
             users.save((err1) => {
               console.log(users.studentID);
               if (!err1) {
@@ -399,7 +371,6 @@ exports.mngStudent = (req, res, next) => {
                 req.flash('error', err1);
               }
             });
-
           });
         });
       }
@@ -415,7 +386,6 @@ exports.mngStudent = (req, res, next) => {
           console.log('Error during record insertion : ' + err);
       }
     });
-    // req.flash('success', 'Welcome Back "' + req.body.username + '".');
   }
   else {
     StudentModel.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
@@ -434,9 +404,6 @@ exports.mngStudent = (req, res, next) => {
       }
     });
   }
-
-
-
 };
 
 exports.viewStudent = (req, res, next) => {
@@ -470,7 +437,6 @@ exports.updateStudent = (req, res, next) => {
 };
 
 /********* MANAGE SUBJECT ********/
-
 exports.mngSubjectView = (req, res, next) => {
   SubjectModel.find((err, docs) => {
     if (!err) {
@@ -513,15 +479,15 @@ exports.deleteSubject = (req, res, next) => {
   res.redirect('/mngSubject');
 };
 
-/* ********** HOME ********** */
 
+/* ********** HOME ********** */
 exports.home = (req, res, next) => {
   res.render('/');
   console.log("AAVYU KHARI AHIA FINALLY...");
 };
 
-/* ********** METHODS ********** */
 
+/* ********** METHODS ********** */
 function handleValidationErrors(error, body, confirmPasswordError) {
   if (error) {
     for (field in error.errors) {
@@ -672,4 +638,3 @@ function subjectValidation(err, body) {
     }
   }
 }
-
