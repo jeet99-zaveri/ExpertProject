@@ -34,7 +34,6 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, '\n\n *** MongoDB connection error:'));
 
 
-/* ********** APP USE ********** */
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -98,7 +97,6 @@ app.get('*', (req, res, next) => {
 
 app.post('*', (req, res, next) => {
   res.locals.loggedInUser = req.user || null;
-
   next();
 });
 
