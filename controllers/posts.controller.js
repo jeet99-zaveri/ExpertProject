@@ -49,9 +49,12 @@ exports.create = (req, res, next) => {
   let posts = new postsModel({
     name: req.body.name,
     description: req.body.description,
-    image: req.body.image,
+    image: req.file.path,
     author: req.user._id
   });
+
+  //console.log(req.file.path);
+
 
   // Save posts
   posts.save((error) => {
@@ -133,11 +136,16 @@ exports.read = (req, res, next) => {
       let date = posts.created_at;
       date = date.toLocaleDateString("en-US", options);
 
+      var path = posts.image;
+      let cutted = path.slice(7);
+      console.log("New Path :: " + cutted);
+
       res.render('posts/read', 
       {
         layout: 'main',
         posts: posts,
         date: date,
+        imageCutted: cutted,
         updatedposts: req.flash('updatedposts'),
         notAuthorized: req.flash('notAuthorized'),
         createdComment: req.flash('createdComment'),

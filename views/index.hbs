@@ -49,7 +49,6 @@
   <div class="row" id="row-for-posts-cards">
 
     {{#each postss}}
-
     <div class="col-md-8 offset-md-2 offset-sm-1 col-sm-10 card mb-5 mt-5">
       <div class="card-border">
         <a href="/posts/{{this._id}}" class="card-header-link">
@@ -57,7 +56,7 @@
         </a>
         <div class="card-body">
           <h5 class="card-title">
-            <i class="far fa-user"></i> Suggested By: <a href="/users/{{this.author._id}}">{{this.author.email}}</a>
+            <i class="far fa-user"></i> Posted By: <a href="/users/{{this.author._id}}">{{this.author.email}}</a>
           </h5>
           <h6 class="card-subtitle text-muted">
             <div class="dateDIVClass text-muted" id="dateDIV{{this._id}}" style="margin-top: .5rem;">
@@ -65,9 +64,12 @@
             </div>
           </h6>
         </div>
+        {{#if this.image}}
         <a href="/posts/{{this._id}}">
-          <img style="height: 430px; width: 100%; display: block;" src="{{this.image}}" alt="Card image">
+          {{!-- <img style="height: 430px; width: 100%; display: block;" > --}}
+          <img class="rounded mx-auto d-block responsive" src="{{this.image}}" alt="Card image" style="display: block; width: 100%;">
         </a>
+        {{/if}}
         <div class="card-body">
           <p class="card-text">{{this.description}}</p>
           <br><i class="far fa-heart"></i> Likes: {{this.likes.length}}
@@ -76,7 +78,6 @@
 
       </div>
     </div>
-
     {{/each}}
 
   </div>

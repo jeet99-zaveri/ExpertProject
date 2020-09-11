@@ -2,13 +2,16 @@
 
 <div class="container-fluid container-max-width mt-5">
   <div class="row" id="row-for-posts-cards">
-    <div class="col-md-8 offset-md-2 offset-sm-1 col-sm-10 card mb-5 mt-5">
-      User Profile For: {{user.username}}
-      <hr>
+    <div class="col-md-8 offset-md-2 col-sm-10 card mt-5">
+      <div class="mt-3">
+        User Profile For: {{user.email}}
+        <hr>
+      </div>
+
 
       {{#if user.postss}}
 
-      postss That "{{user.username}}" Suggested: <br>
+      Doubts Those are "{{user.email}}" posted: <br>
 
       {{#each user.postss}}
       <a href="/posts/{{this._id}}" style="text-decoration: none;">&nbsp; &nbsp; &bull; &nbsp;{{this.name}}</a><br>
@@ -18,7 +21,7 @@
 
       {{#if user.comments}}
 
-      <br>Comments By "{{user.username}}": <br>
+      <br>Comments By "{{user.email}}": <br>
 
       {{#each user.comments}}
       <a href="/posts/{{this.posts}}/comment/{{this._id}}" style="text-decoration: none;">&nbsp; &nbsp; &bull;
@@ -29,7 +32,7 @@
 
       {{#if user.likes}}
 
-      <br>postss That "{{user.username}}" Liked: <br>
+      <br>Doubts those are "{{user.email}}" Liked: <br>
 
       {{#each user.likes}}
       <a href="/posts/{{this.posts._id}}" style="text-decoration: none;">&nbsp; &nbsp; &bull;

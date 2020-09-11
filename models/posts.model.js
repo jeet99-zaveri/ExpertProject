@@ -10,8 +10,8 @@ let postsSchema = new Schema({
     },
     description: {
       type: String,
-      minlength: [30, 'Description Should Be At Least 30 Characters Long'],
-      maxlength: [500, "Description Can't Be Longer Than 30 Characters"],
+      minlength: [10, 'Description Should Be At Least 10 Characters Long'],
+      maxlength: [50, "Description Can't Be Longer Than 50 Characters"],
       required: [true, "Description Field Is Required"]
     },
     image: { // TODO

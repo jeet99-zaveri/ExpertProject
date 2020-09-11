@@ -4,9 +4,9 @@
     <div class="container-fluid">
       <h3>{{title}}</h3>
       {{#if updating}}
-      <form action="/posts/update/{{posts._id}}" method="POST">
+      <form action="/posts/update/{{posts._id}}" method="POST" enctype="multipart/form-data">
         {{else}}
-        <form action="/posts/create" method="POST">
+        <form action="/posts/create" method="POST" enctype="multipart/form-data">
           {{/if}}
           <fieldset>
             <div class="form-group">
@@ -19,14 +19,14 @@
             </div>
             <div class="form-group">
               <label for="imageID">Image</label>
-              <input type="text" name="image" class="form-control" id="imageID" value="{{posts.image}}"
+              <input type="file" name="image" class="form-control form-control-file border border-dark" id="imageID" value="{{posts.image}}"
                 placeholder="Enter Image URL">
             </div>
             <div class="form-group">
               <label for="descriptionID">Description</label>
               <textarea class="form-control {{#if posts.descriptionError}}is-invalid{{/if}}" name="description"
                 id="descriptionID" rows="3"
-                placeholder="Description (min 30 characters)">{{posts.description}}</textarea>
+                placeholder="Description (min 10 characters to max 50 characters)">{{posts.description}}</textarea>
               <div class="text-danger">
                 {{posts.descriptionError}}
               </div>

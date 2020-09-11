@@ -36,27 +36,31 @@
 
           <h3 class="card-header">{{posts.name}}</h3>
           <div class="card-body">
+            <h5 class="card-title">
+              <i class="far fa-user"></i> Posted By: <a href="/users/{{user._id}}">{{user.email}}</a>
+            </h5>
+            <h6 class="card-subtitle text-muted">
+              <div class="dateDIVClass text-muted" id="dateDIV{{date}}" style="margin-top: .5rem;">
+                {{this.date}}
+              </div>
+            </h6>
           </div>
-          <img style="height: 500px; width: 100%; display: block;" src="{{posts.image}}" alt="Card image">
+          {{#if posts.image}}
+          {{!-- <img style="height: 500px; width: 100%; display: block;" src="{{posts.image}}" alt="Card image"> --}}
+          <img class="rounded mx-auto d-block responsive" src="../../{{posts.image}}" alt="Card image"
+            style="display: block; width: 100%;">
+          {{/if}}
           <div class="card-body">
             <p class="card-text">{{posts.description}}</p>
-            <br><i class="far fa-user"></i> Suggested By: <a href="/users/{{user._id}}">{{user.email}}</a>
-            <br><i class="far fa-comments"></i> Comments: {{posts.comments.length}}
-            <br><i class="far fa-heart"></i> Likes: {{posts.likes.length}}
-            <br><br>
+            {{!-- <br><i class="far fa-heart"></i> Likes: {{posts.likes.length}} --}}
+            {{!-- <br><i class="far fa-comments"></i> Comments: {{posts.comments.length}} --}}
+            {{!-- <br><br> --}}
 
-            {{#if loggedInUser}}
-            {{#if correctUser}}
-            <a href="/posts/update/{{posts._id}}" class="card-link btn btn-warning"><i class="far fa-edit"></i>
-              Edit</a>
-            <button data-toggle="modal" data-target="#deleteModal" class="card-link btn btn-danger mr-4"><i
-                class="far fa-trash-alt"></i> Delete</button>
-            {{/if}}
-            {{/if}}
+            
 
             {{#unless loggedInUser}}
             <button data-toggle="modal" data-target="#likeModal" class="card-link btn btn-outline-danger"
-              style="display: block;"><i class="fa fa-heart"></i> Like</button>
+              style="display: block;"><i class="fa fa-heart"></i> Likes: {{posts.likes.length}}</button>
             {{/unless}}
 
             {{#if loggedInUser}}
@@ -71,11 +75,13 @@
             </form>
             {{/if}}
 
+            {{#if correctUser}}
+            <a href="/posts/update/{{posts._id}}" class="card-link btn btn-warning"><i class="far fa-edit"></i>Edit</a>
+            <button data-toggle="modal" data-target="#deleteModal" class="card-link btn btn-danger"><i
+                class="far fa-trash-alt"></i> Delete</button>
             {{/if}}
-          </div>
 
-          <div class="card-footer text-muted" id="dateID">
-            <strong>Created At: </strong> {{date}}
+            {{/if}}
           </div>
         </div>
       </div>
@@ -104,7 +110,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">You Need To Login To Be Able To Like postss</strong></h5>
+            <h5 class="modal-title">You Need To Login To Be Able To Like Post</strong></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

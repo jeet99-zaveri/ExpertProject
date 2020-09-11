@@ -68,7 +68,7 @@ app.engine('.hbs', expressHandlebars({
   }
 }));
 app.set('view engine', '.hbs');
-// app.set('views', path.join(__dirname, 'views'));
+
 
 /* ********** PASSPORT ********** */
 require('./config/passport')(passport);
